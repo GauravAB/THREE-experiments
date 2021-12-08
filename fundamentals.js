@@ -1,5 +1,7 @@
 import * as THREE from '../build/three.module.js';
 
+
+
 function main()
 {
     const canvas = document.querySelector('#c')
@@ -28,8 +30,17 @@ function main()
 
     scene.add(cube);  
     
-    renderer.render(scene,camera);
+    function render(time){
+        time *= 0.001;
+    
+        cube.rotation.x = time;
+        cube.rotation.y = time;
+        renderer.render(scene,camera);
+    
+        requestAnimationFrame(render);
+    }
 
+    requestAnimationFrame(render);
 }
 
 main();
